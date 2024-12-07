@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use App\Models\User;
+use App\Models\publicacion;
+
 class UsuarioController extends Controller
 {
    public function index(){
@@ -12,13 +15,16 @@ class UsuarioController extends Controller
    }
    
    public function store(Request $request){ 
-    $datos = request()->except('_token');
+    print_r("ana)");
+    
+    $datos = request();
     //Validación
     $request->validate([
         'name' => ['required', 'string', 'max:255'],
-        'email' => ['required', 'string', 'email:rfc,dns', 'max:255', 'unique:users'],
+        'email' => ['required', 'string',  'max:255', 'unique:users'],
         'password' => ['required', 'string', 'min:8', 'confirmed'],
     ]);
+   
     //Crear el usuario
     //$user = User::create($datos);
     $user = new User(); // Asegúrate de usar el modelo correcto
@@ -29,5 +35,5 @@ class UsuarioController extends Controller
     return redirect()->route('usuarios.index')->with('mensaje', 'Usuario creado correctamente');
    }
   
- 
+
 }

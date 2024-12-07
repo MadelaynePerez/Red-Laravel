@@ -7,5 +7,6 @@ Route::get('/', function () {
 
 });
 
-Route::resource('usuarios', UsuarioController::class);
+//Route::resource('usuarios', UsuarioController::class);/
 Route::post('/usuarios', [UsuarioController::class, 'store'])->name('usuarios.store');
+Route::get('/usuarios', [UsuarioController::class, 'index'])->name('usuarios.index');
